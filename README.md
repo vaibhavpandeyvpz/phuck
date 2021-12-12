@@ -1,7 +1,7 @@
 # phuck
 
 Single-file shell to f__k vulnerable [PHP](https://www.php.net/) servers, solely for educational and research purposes.
-Powered by [Bootstrap](https://getbootstrap.com/) and [React.js](https://reactjs.org/), features a file browser and browser based, [SSH](https://en.wikipedia.org/wiki/Secure_Shell) like terminal.
+Powered by [Bootstrap](https://getbootstrap.com/) and [React.js](https://reactjs.org/), features a file browser and web based, [SSH](https://en.wikipedia.org/wiki/Secure_Shell) like terminal.
 
 [![screenshot.png](screenshot.png)](screenshot.png)
 
