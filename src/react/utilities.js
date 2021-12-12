@@ -9,7 +9,7 @@ export const RPC_URL = process.env.RPC_URL || '';
 export function sendAndReceive(action, data, config = {}) {
   const headers = {'Content-Type': 'application/x-www-form-urlencoded'};
   if (!data?.append) {
-    data = qs.stringify(data || {});
+    data = new URLSearchParams(data || {});
   }
 
   return axios.post(RPC_URL, data, {headers, params: {action}, ...config})
