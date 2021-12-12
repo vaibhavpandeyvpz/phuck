@@ -51,6 +51,6 @@ php bundle.php
 
 You should now have a `phuck.dist.php` in the project root.
 
-## LICENSE
+## License
 
 See [LICENSE](LICENSE) file.
