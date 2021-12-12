@@ -14,7 +14,11 @@ export function App() {
       .finally(() => setLoading(false));
   }, []);
   if (loading) {
-    return 'Loading...';
+    return (
+      <div className="text-center my-3">
+        <i className="fas fa-circle-notch fa-spin" /> Loading…
+      </div>
+    );
   }
 
   return (
