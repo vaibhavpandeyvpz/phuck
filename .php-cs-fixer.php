@@ -19,7 +19,7 @@ with this source code in the file LICENSE.md.
 EOF;
 
 $finder = PhpCsFixer\Finder::create()
-    ->exclude(array('.git', '.parcel_cache', 'dist', 'vendor', 'phuck.dist.php'))
+    ->exclude(array('.git', '.parcel_cache', 'dist', 'node_modules', 'vendor', 'phuck.dist.php'))
     ->in(__DIR__);
 
 $config = new PhpCsFixer\Config();
