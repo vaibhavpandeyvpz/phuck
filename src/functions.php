@@ -32,7 +32,8 @@ function phuck_handle_action() {
                 return true;
             }
 
-            $result = PhuckShell::exec($_POST['cmd'], $_POST['cwd']);
+            $result = PhuckShell::exec($_POST['cwd'], $_POST['cmd']);
+            $result['cwd'] = getcwd();
             phuck_respond_with_json($result);
             return true;
         case 'compress':
@@ -67,7 +68,7 @@ function phuck_handle_action() {
                     return true;
                 }
             }
-            
+
             phuck_respond_with_ok();
             return true;
         case 'download':
@@ -76,8 +77,8 @@ function phuck_handle_action() {
             }
 
             $paths = (array) $_POST['path'];
-            if (count($paths) === 1) {
-                PhuckFs::download($paths[0]);
+            if (count($paths) === 1 && !is_dir($path = realpath($paths[0]))) {
+                PhuckFs::download($path);
             } else {
                 $temp = sys_get_temp_dir().DIRECTORY_SEPARATOR.uniqid('download');
                 $ok = PhuckFs::compress($paths, $temp, $_POST['cwd']);
@@ -129,7 +130,7 @@ function phuck_handle_action() {
             }
 
             if ($_POST['mode'] === 'cut') {
-                array_walk($paths, 'Phuck\PhuckFs::rimraf');
+                array_walk($paths, 'PhuckFs::rimraf');
             }
 
             phuck_respond_with_ok();

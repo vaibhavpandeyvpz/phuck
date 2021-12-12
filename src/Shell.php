@@ -2,6 +2,9 @@
 
 class PhuckShell
 {
+    const REGEXP_CD = '/^cd\s+(.*)$/i';
+    const REGEXP_CD_PLUS_CMD = '/^cd\s+(.*)\s+(?:;|&&)\s+(.*)$/i';
+
     /**
      * @return array
      */
@@ -39,10 +42,22 @@ class PhuckShell
     public static function exec($cwd, $cmd)
     {
         @chdir($cwd);
+        if (preg_match(self::REGEXP_CD_PLUS_CMD, $cmd, $matches)) {
+            @chdir(trim($matches[1]));
+            $cmd = trim($matches[2]);
+        } elseif (preg_match(self::REGEXP_CD, $cmd, $matches)) {
+            @chdir(trim($matches[1]));
+            return array(
+                'code' => 0,
+                'stdout' => '',
+            );
+        }
+
         if (function_exists('proc_open')) {
             $descriptors = array(
-                0 => array('pipe', 'r'),
-                1 => array('pipe', 'w'),
+                array('pipe', 'r'),
+                array('pipe', 'w'),
+                array('pipe', 'w'),
             );
             $process = proc_open($cmd, $descriptors, $pipes);
             if ($process) {

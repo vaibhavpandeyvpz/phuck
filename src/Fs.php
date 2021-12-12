@@ -167,7 +167,7 @@ class PhuckFs
                     $mime = 'application/octet-stream';
                     if ($finfo) {
                         /** @noinspection PhpComposerExtensionStubsInspection */
-                        $mime = finfo_file($finfo, $real->getPath(), FILEINFO_MIME_TYPE);
+                        $mime = finfo_file($finfo, $real->getFilename(), FILEINFO_MIME_TYPE);
                     }
                 }
 
@@ -175,8 +175,9 @@ class PhuckFs
                     'hidden' => strpos($child->getBasename(), '.') === 0,
                     'mime' => $mime,
                     'modified' => $child->getMTime(),
-                    'name' => $child->getFilename(),
-                    'path' => $child->getRealPath(),
+                    'name' => $child->getBasename(),
+                    'path' => $child->getPathname(),
+                    'path_real' => $child->getRealPath(),
                     'permissions' => substr(sprintf('%o', $child->getPerms()), -4),
                     'size' => $child->getSize(),
                     'type' => $child->getType(),
@@ -202,16 +203,20 @@ class PhuckFs
 
             return 0;
         });
-        array_unshift($files, array(
+        $parent = new \SplFileInfo(dirname($dir));
+        $up = array(
             'hidden' => false,
             'mime' => null,
-            'modified' => 0,
+            'modified' => $parent->getMTime(),
             'name' => '..',
-            'path' => realpath(dirname($dir)),
+            'path' => $parent->getPathname(),
             'permissions' => null,
             'size' => 0,
             'type' => 'dir',
-        ));
+        );
+        $up['path_real'] = $up['path'];
+        $up['type_real'] = $up['type'];
+        array_unshift($files, $up);
         return $files;
     }
 
@@ -221,7 +226,7 @@ class PhuckFs
      */
     public static function read($path)
     {
-        return file_get_contents(realpath($path)) || '';
+        return file_get_contents(realpath($path));
     }
 
     /**

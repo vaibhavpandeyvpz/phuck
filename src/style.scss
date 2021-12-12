@@ -1,0 +1,54 @@
+:root {
+  --bs-font-sans-serif: "Roboto";
+  --bs-font-monospace: "Roboto Mono";
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+
+  &-track {
+    background: #222;
+  }
+
+  &-thumb {
+    background: #444;
+  }
+}
+
+.App {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.FileBrowser .table-responsive {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.ServerInformation {
+  width: 20%;
+}
+
+.Terminal {
+  height: 30%;
+
+  input:focus {
+    outline: none;
+  }
+
+  pre {
+    white-space: pre-wrap;
+  }
+}
+
+.progress {
+  height: 5px !important;
+}
