@@ -5,7 +5,7 @@ Powered by [Bootstrap](https://getbootstrap.com/) and [React.js](https://reactjs
 
 [![screenshot.png](screenshot.png)](screenshot.png)
 
-**Caution:** Do not upload this file anywhere on a production server, this file anywhere publicly accessible is a security risk.
+**Caution:** This file if publicly accessible, is a total security risk. Do not upload or use it in a production environment.
 
 ## Download
 
