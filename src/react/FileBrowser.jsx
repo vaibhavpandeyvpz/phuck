@@ -252,8 +252,8 @@ export function FileBrowser({ env }) {
           )}
         </div>
         <div className="position-relative h-100">
-          <div className="table-responsive">
-            <table className="table mb-0">
+          <div className="table-responsive position-absolute w-100 h-100">
+            <table className="table table-hover mb-0">
               <thead className="bg-light">
               <tr>
                 <th className="sticky-top" />

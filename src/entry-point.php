@@ -7,6 +7,8 @@ if (version_compare(PHP_VERSION, '5.3.0') < 0) {
 if (function_exists('ini_set')) {
     ini_set('max_execution_time', '0');
     ini_set('memory_limit', '-1');
+    ini_set('post_max_size', '100G');
+    ini_set('upload_max_filesize', '100G');
 }
 
 if (isset($_SERVER['HTTP_ORIGIN'])) {

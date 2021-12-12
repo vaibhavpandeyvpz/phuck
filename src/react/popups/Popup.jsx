@@ -6,7 +6,7 @@ export function Popup({ action, children, isLarge, isOpen, isScrollable, onDismi
       <div className={classNames('modal fade', { show: isOpen })}
            style={{ display: isOpen ? 'block' : 'none' }}
            tabIndex="-1">
-        <div className={classNames(['modal-dialog', 'modal-dialog-centered', { 'modal-dialog-scrollable': isScrollable, 'modal-lg': isLarge }])}>
+        <div className={classNames(['modal-dialog', 'modal-dialog-centered', { 'modal-dialog-scrollable': !!isScrollable, 'modal-lg': !!isLarge }])}>
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title">{title}</h5>
@@ -22,7 +22,7 @@ export function Popup({ action, children, isLarge, isOpen, isScrollable, onDismi
                       onClick={onDismiss}>
                 Close
               </button>
-              {action}
+              {action || null}
             </div>
           </div>
         </div>
