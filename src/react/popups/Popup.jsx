@@ -1,17 +1,17 @@
 import React from 'react';
 
-export function Popup({ action, children, isLarge, isOpen, isScrollable, onDismiss, title }) {
+export function Popup({action, children, isLarge, isOpen, isScrollable, onDismiss, title}) {
   return (
     <>
-      <div className={classNames('modal fade', { show: isOpen })}
-           style={{ display: isOpen ? 'block' : 'none' }}
-           tabIndex="-1">
-        <div className={classNames(['modal-dialog', 'modal-dialog-centered', { 'modal-dialog-scrollable': !!isScrollable, 'modal-lg': !!isLarge }])}>
+      <div className={classNames('modal fade', {show: isOpen})}
+        style={{display: isOpen ? 'block' : 'none'}}
+        tabIndex="-1">
+        <div className={classNames(['modal-dialog', 'modal-dialog-centered', {'modal-dialog-scrollable': !!isScrollable, 'modal-lg': !!isLarge}])}>
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title">{title}</h5>
               <button className="btn-close"
-                      onClick={onDismiss}>
+                onClick={onDismiss}>
               </button>
             </div>
             <div className="modal-body">
@@ -19,7 +19,7 @@ export function Popup({ action, children, isLarge, isOpen, isScrollable, onDismi
             </div>
             <div className="modal-footer">
               <button className="btn btn-secondary"
-                      onClick={onDismiss}>
+                onClick={onDismiss}>
                 Close
               </button>
               {action || null}
@@ -27,9 +27,9 @@ export function Popup({ action, children, isLarge, isOpen, isScrollable, onDismi
           </div>
         </div>
       </div>
-      <div className={classNames('modal-backdrop fade', { show: isOpen })}
-           onClick={onDismiss}
-           style={{ display: isOpen ? 'block' : 'none' }}>
+      <div className={classNames('modal-backdrop fade', {show: isOpen})}
+        onClick={onDismiss}
+        style={{display: isOpen ? 'block' : 'none'}}>
       </div>
     </>
   );

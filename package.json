@@ -6,6 +6,9 @@
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.0.1",
+    "eslint": "^8.4.1",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-react": "^7.27.1",
     "parcel": "^2.0.1"
   },
   "private": true

@@ -8,11 +8,9 @@
   },
   "config": {
     "optimize-autoloader": true,
-    "platform": {
-      "php": "5.2"
-    }
+    "sort-packages": true
   },
-  "require": {
-    "ext-json": "*"
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.4"
   }
 }

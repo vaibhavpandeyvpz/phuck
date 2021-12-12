@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Phuck package.
+ *
+ * (c) Vaibhav Pandey <contact@vaibhavpandey.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.md.
+ */
+
 class PhuckFs
 {
     /**
@@ -40,7 +49,7 @@ class PhuckFs
         }
 
         $zip = new \ZipArchive();
-        $zip->open($destination,  \ZipArchive::CREATE);
+        $zip->open($destination, \ZipArchive::CREATE);
         foreach ($sources as $path) {
             if (is_link($path)) {
                 $path = readlink($path);
@@ -56,7 +65,8 @@ class PhuckFs
                 $zip->addEmptyDir(ltrim($name, '/').'/');
                 try {
                     $children = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator(
-                        $entry->getRealPath(), \FilesystemIterator::SKIP_DOTS
+                        $entry->getRealPath(),
+                        \FilesystemIterator::SKIP_DOTS
                     ));
                 } catch (\Exception $ignore) {
                     continue;
@@ -71,11 +81,11 @@ class PhuckFs
 
                     if ($child->isDir()) {
                         $zip->addEmptyDir(ltrim($name.'/').'/');
-                    } else if ($child->isFile()) {
+                    } elseif ($child->isFile()) {
                         $zip->addFile($child->getPathname(), $name);
                     }
                 }
-            } else if ($entry->isFile() || $entry->isLink()) {
+            } elseif ($entry->isFile() || $entry->isLink()) {
                 $zip->addFile($entry->getPathname(), $entry->getFilename());
             }
         }

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { FileBrowser } from './FileBrowser';
-import { ServerInformation } from './ServerInformation';
-import { Terminal } from './Terminal';
-import { sendAndReceive } from './utilities';
+import React, {useEffect, useState} from 'react';
+import {FileBrowser} from './FileBrowser';
+import {ServerInformation} from './ServerInformation';
+import {Terminal} from './Terminal';
+import {sendAndReceive} from './utilities';
 
 export function App() {
   const [env, setEnv] = useState({});
@@ -10,8 +10,8 @@ export function App() {
   useEffect(() => {
     setLoading(true);
     sendAndReceive('env')
-      .then(data => setEnv(data))
-      .finally(() => setLoading(false));
+        .then((data) => setEnv(data))
+        .finally(() => setLoading(false));
   }, []);
   if (loading) {
     return (

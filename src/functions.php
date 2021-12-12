@@ -1,11 +1,21 @@
 <?php
 
+/*
+ * This file is part of Phuck package.
+ *
+ * (c) Vaibhav Pandey <contact@vaibhavpandey.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.md.
+ */
+
 /**
  * @param array $keys
  * @param array $array
  * @return bool
  */
-function phuck_assert_required(array $keys, array $array) {
+function phuck_assert_required(array $keys, array $array)
+{
     $missing = array();
     foreach ($keys as $key) {
         if (empty($array[$key])) {
@@ -24,7 +34,8 @@ function phuck_assert_required(array $keys, array $array) {
 /**
  * @return bool
  */
-function phuck_handle_action() {
+function phuck_handle_action()
+{
     $action = empty($_GET['action']) ? null : trim($_GET['action']);
     switch ($action) {
         case 'command':
@@ -169,7 +180,8 @@ function phuck_handle_action() {
  * @param int $code
  * @return void
  */
-function phuck_respond_with_json($data = null, $code = 200) {
+function phuck_respond_with_json($data = null, $code = 200)
+{
     http_response_code($code);
     if (empty($data)) {
         return;
@@ -185,10 +197,12 @@ function phuck_respond_with_json($data = null, $code = 200) {
     echo json_encode($data, $options);
 }
 
-function phuck_respond_with_nok() {
+function phuck_respond_with_nok()
+{
     phuck_respond_with_json(array('ok' => false));
 }
 
-function phuck_respond_with_ok() {
+function phuck_respond_with_ok()
+{
     phuck_respond_with_json(array('ok' => true));
 }

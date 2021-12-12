@@ -3,3 +3,4 @@
 /vendor/
 /.parcel-cache/
 /phuck.dist.php
+/.php-cs-fixer*cache

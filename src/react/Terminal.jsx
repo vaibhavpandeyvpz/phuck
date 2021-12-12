@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { sendAndReceive } from './utilities';
+import React, {useRef, useState} from 'react';
+import {sendAndReceive} from './utilities';
 
 const banner =
   ' /$$$$$$$  /$$                           /$$\n' +
@@ -9,9 +9,9 @@ const banner =
   '| $$____/ | $$  \\ $$| $$  | $$| $$      | $$$$$$/\n' +
   '| $$      | $$  | $$| $$  | $$| $$      | $$_  $$\n' +
   '| $$      | $$  | $$|  $$$$$$/|  $$$$$$$| $$ \\  $$\n' +
-  '|__/      |__/  |__/ \\______/  \\_______/|__/  \\__/'
+  '|__/      |__/  |__/ \\______/  \\_______/|__/  \\__/';
 
-export function Terminal({ env }) {
+export function Terminal({env}) {
   const [cwd, setCwd] = useState(env.cwd);
   const [command, setCommand] = useState('ls -al');
   const commandInput = useRef(null);
@@ -20,16 +20,16 @@ export function Terminal({ env }) {
   const [isRunning, setRunning] = useState(false);
   function executeCommand(command) {
     setRunning(true);
-    sendAndReceive('command', { cwd, cmd: command })
-      .then(({ cwd, ...result }) => {
-        pushExecution({ ...result, command });
-        setCwd(cwd);
-      })
-      .finally(() => {
-        setRunning(false);
-        commandOutput.current.scrollTop = commandOutput.current.scrollHeight;
-        commandInput.current.focus();
-      });
+    sendAndReceive('command', {cwd, cmd: command})
+        .then(({cwd, ...result}) => {
+          pushExecution({...result, command});
+          setCwd(cwd);
+        })
+        .finally(() => {
+          setRunning(false);
+          commandOutput.current.scrollTop = commandOutput.current.scrollHeight;
+          commandInput.current.focus();
+        });
   }
   function handleKeyDown(e) {
     if (e.key === 'Enter') {
@@ -50,7 +50,7 @@ export function Terminal({ env }) {
     <div className="d-flex flex-column gap-1 w-100 h-100">
       <div className="w-100 h-100 flex-grow-1 overflow-auto" ref={commandOutput}>
         <pre className="text-white-50">{banner}</pre>
-        {executions.map(({ command, code, stdout }, i) => (
+        {executions.map(({command, code, stdout}, i) => (
           <div className="w-100" key={`terminal-execution-${i}`}>
             <pre className="text-white">{command}</pre>
             {stdout ? <pre className="text-white-50">{stdout}</pre> : ''}
@@ -68,21 +68,21 @@ export function Terminal({ env }) {
           <span className="text-white-50">$</span>
         </strong>
         <input autoFocus
-               className="align-self-center bg-transparent border-0 flex-grow-1 text-white-50"
-               defaultValue={command}
-               disabled={isRunning}
-               onChange={e => setCommand(e.target.value)}
-               onKeyDown={handleKeyDown}
-               ref={commandInput} />
+          className="align-self-center bg-transparent border-0 flex-grow-1 text-white-50"
+          defaultValue={command}
+          disabled={isRunning}
+          onChange={(e) => setCommand(e.target.value)}
+          onKeyDown={handleKeyDown}
+          ref={commandInput} />
       </div>
       <div className="bg-black progress rounded-0">
         {isRunning && (
           <div className="progress-bar progress-bar-striped progress-bar-animated"
-               role="progressbar"
-               aria-valuenow="100"
-               aria-valuemin="0"
-               aria-valuemax="100"
-               style={{width: '100%'}}>
+            role="progressbar"
+            aria-valuenow="100"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            style={{width: '100%'}}>
           </div>
         )}
       </div>
