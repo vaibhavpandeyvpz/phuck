@@ -21,6 +21,9 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
+          tools: composer, php-cs-fixer
+      - name: Check code-style issues
+        run: php-cs-fixer fix --diff --dry-run -vvv
       - name: Bundle frontend
         run: npx parcel build src/index.html
       - name: Bundle frontend + backend
