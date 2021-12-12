@@ -1,0 +1,18 @@
+{
+  "autoload": {
+    "files": [
+      "src/Fs.php",
+      "src/Shell.php",
+      "src/functions.php"
+    ]
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "platform": {
+      "php": "5.2"
+    }
+  },
+  "require": {
+    "ext-json": "*"
+  }
+}
